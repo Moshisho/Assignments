@@ -5,6 +5,10 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SelaShapesAssignment", "SelaShapesAssignment\SelaShapesAssignment.csproj", "{53BB9409-829F-455B-A154-3508E83DAA77}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShapesHandler", "ShapesHandler\ShapesHandler.csproj", "{AA5E0E85-ADE9-43EE-82C6-67FA56130204}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShapesTests", "ShapesTests\ShapesTests.csproj", "{D1F879F0-FE45-427D-82F8-20DB93E3D376}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{53BB9409-829F-455B-A154-3508E83DAA77}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{53BB9409-829F-455B-A154-3508E83DAA77}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{53BB9409-829F-455B-A154-3508E83DAA77}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AA5E0E85-ADE9-43EE-82C6-67FA56130204}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AA5E0E85-ADE9-43EE-82C6-67FA56130204}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AA5E0E85-ADE9-43EE-82C6-67FA56130204}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AA5E0E85-ADE9-43EE-82C6-67FA56130204}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D1F879F0-FE45-427D-82F8-20DB93E3D376}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D1F879F0-FE45-427D-82F8-20DB93E3D376}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D1F879F0-FE45-427D-82F8-20DB93E3D376}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D1F879F0-FE45-427D-82F8-20DB93E3D376}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
