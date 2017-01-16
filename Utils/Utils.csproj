@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{AA5E0E85-ADE9-43EE-82C6-67FA56130204}</ProjectGuid>
+    <ProjectGuid>{67B51A97-F1ED-45D0-BF3F-85949804EDD3}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ShapesHandler</RootNamespace>
-    <AssemblyName>ShapesHandler</AssemblyName>
+    <RootNamespace>Utils</RootNamespace>
+    <AssemblyName>Utils</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -39,16 +39,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CartesianCoordinatesShape.cs" />
-    <Compile Include="Circle.cs" />
-    <Compile Include="PolarCoordinatesShape.cs" />
-    <Compile Include="I2DShape.cs" />
+    <Compile Include="ExtensionMethods.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Rectangle.cs" />
-    <Compile Include="RightTriangle.cs" />
-    <Compile Include="ShapesCollection.cs" />
-    <Compile Include="Square.cs" />
-    <Compile Include="Utils\ExtensionMethods.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

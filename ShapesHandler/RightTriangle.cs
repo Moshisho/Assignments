@@ -2,13 +2,13 @@
 
 namespace ShapesHandler
 {
-    public class Rectangle : CartesianCoordinatesShape
+    public class RightTriangle : CartesianCoordinatesShape
     {
         private readonly double area;
         private readonly double Height;
         private readonly double Width;
 
-        public Rectangle(double height, double width) : base(new double[] { height, width, height, width })
+        public RightTriangle(double height, double width) : base(new double[] { height, width, Math.Sqrt(height*height + width*width) })
         {
             Height = height;
             Width = width;
@@ -25,7 +25,7 @@ namespace ShapesHandler
 
         private double CalculateArea(double height, double width)
         {
-            return height * width;
+            return height * width / 2;
         }
     }
 }

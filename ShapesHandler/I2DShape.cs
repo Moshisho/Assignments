@@ -4,7 +4,7 @@
     // add abstruct Shape.cs with default implementations. (virtual)
     // override ToString()
 
-    interface I2DShape 
+    public interface I2DShape 
     {
         double Area { get; }
         double Circumference { get; }
