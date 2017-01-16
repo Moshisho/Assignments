@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace ShapesHandler
+﻿namespace ShapesHandler
 {
     public class Rectangle : CartesianCoordinatesShape
     {
