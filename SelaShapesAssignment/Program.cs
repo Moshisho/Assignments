@@ -7,7 +7,6 @@ namespace SelaShapesAssignment
 {
     class Program
     {
-        //add name for shapes so tostring is easier.
         private static ConsoleKey pressedKey;
         private static ShapesCollection shapes = new ShapesCollection();
 
@@ -55,7 +54,7 @@ namespace SelaShapesAssignment
                 }
 
             } while (pressedKey != ConsoleKey.D7);
-            // argument exception and help display
+
             Environment.Exit(0);
         }
 
@@ -127,15 +126,6 @@ namespace SelaShapesAssignment
                 throw new ArgumentException();
             }
         }
-        /*
-
-        1:
-        1.	Square    c:4*w, a:w^2
-        2.	Rectangle c:2*w+2*h, a:h*w
-        3.	Circle    c:2PIr, a:PIr^2
-        4.	Right triangle
-
-         */
 
         #region consolePrints
 

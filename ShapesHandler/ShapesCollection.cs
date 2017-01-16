@@ -5,7 +5,7 @@ namespace ShapesHandler
 {
     public class ShapesCollection : List<I2DShape>
     {
-        //This class is inteded to have extensibility on list of shapes for example:
+        // This class can be expanded easily, e.g. average:
         public double AverageArea
         {
             get
