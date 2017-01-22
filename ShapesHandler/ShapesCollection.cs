@@ -1,10 +1,26 @@
-﻿using System.Collections.Generic;
+﻿using ShapesHandler.Utils;
+using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace ShapesHandler
 {
     public class ShapesCollection : List<I2DShape>
     {
+        // This is the publisher of the event:
+        public event EventHandler<ShapeAddedEventArgs> Added;
+
+        protected virtual void OnAdded(ShapeAddedEventArgs addedEventArgs)
+        {
+            Added?.Invoke(this, addedEventArgs);
+        }
+
+        public new void Add(I2DShape shape)
+        {
+            OnAdded(new ShapeAddedEventArgs() { HappenedOn = DateTime.Now });
+            base.Add(shape);
+        }
+
         // This class can be expanded easily, e.g. average:
         public double AverageArea
         {

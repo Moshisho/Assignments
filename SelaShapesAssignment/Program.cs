@@ -1,12 +1,14 @@
 ﻿using ShapesHandler;
 using ShapesHandler.Utils;
 using System;
+using System.Collections.Generic;
 using System.Threading;
 
 namespace SelaShapesAssignment
 {
     class Program
     {
+        private static List<string> strings = new List<string>();
         private static ConsoleKey pressedKey;
         private static ShapesCollection shapes = new ShapesCollection();
 
@@ -17,6 +19,8 @@ namespace SelaShapesAssignment
             Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine("Hello there!");
             PrintHelp();
+
+            shapes.Added += Shapes_Added;
 
             do
             {
@@ -56,6 +60,11 @@ namespace SelaShapesAssignment
             } while (pressedKey != ConsoleKey.D7);
 
             Environment.Exit(0);
+        }
+
+        private static void Shapes_Added(object sender, ShapeAddedEventArgs e)
+        {
+            Console.WriteLine(e.Prefix + sender.ToStringExtension() + "; Happened On: " + e.HappenedOn);
         }
 
         private static I2DShape AddNewShape()
@@ -107,8 +116,6 @@ namespace SelaShapesAssignment
                     PrintAddNewShapeHelp();
                 }
             }
-
-            Console.WriteLine("Added: " + shape.ToStringExtension());
 
             return shape;
         }
