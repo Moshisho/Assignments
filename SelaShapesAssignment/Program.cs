@@ -77,8 +77,7 @@ namespace SelaShapesAssignment
                 {
                     // Use reflection to get the type and it's required params:
                     Type shapeType = shapeTypes.Where(t => t.FullName.ToLower().Contains(shapeNameEntered.ToLower())).First();
-                    var ctors = shapeType.GetConstructors();
-                    var ctor = ctors[0];
+                    var ctor = shapeType.GetConstructors()[0];
                     
                     List<object> sides = new List<object>();
                     foreach (ParameterInfo pi in ctor.GetParameters())
