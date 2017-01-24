@@ -1,0 +1,37 @@
+diff --git a/SelaShapesAssignment/Program.cs b/SelaShapesAssignment/Program.cs
+index 373126b..37ef430 100644
+--- a/SelaShapesAssignment/Program.cs
++++ b/SelaShapesAssignment/Program.cs
+@@ -2,6 +2,7 @@
+ using ShapesHandler.Utils;
+ using System;
+ using System.Collections.Generic;
++using System.Linq;
+ using System.Threading;
+ 
+ namespace SelaShapesAssignment
+@@ -75,7 +76,8 @@ namespace SelaShapesAssignment
+ 
+             while (shape == null)
+             {
+-                
++                IEnumerable<Type> shapes = GetI2DShapeImplementationsWithoutAbstract();
++
+                 pressedKey = Console.ReadKey().Key;
+                 Console.Write(Environment.NewLine);
+ 
+@@ -120,6 +122,14 @@ namespace SelaShapesAssignment
+             return shape;
+         }
+ 
++        private static IEnumerable<Type> GetI2DShapeImplementationsWithoutAbstract()
++        {
++            Type type = typeof(I2DShape);
++            return AppDomain.CurrentDomain.GetAssemblies()
++                .SelectMany(s => s.GetTypes())
++                .Where(p => type.IsAssignableFrom(p) && !p.IsAbstract && p.IsClass);
++        }
++
+         private static double GetNumFromConsoleAndVerifyIt()
+         {
+             string enteredKeys = Console.ReadLine();

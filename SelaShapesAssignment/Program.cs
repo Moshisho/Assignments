@@ -1,6 +1,9 @@
 ﻿using ShapesHandler;
 using ShapesHandler.Utils;
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
 using System.Threading;
 
 namespace SelaShapesAssignment
@@ -9,6 +12,7 @@ namespace SelaShapesAssignment
     {
         private static ConsoleKey pressedKey;
         private static ShapesCollection shapes = new ShapesCollection();
+        private static IEnumerable<Type> shapeTypes = GetI2DShapeImplementationsWithoutAbstract();
 
         static void Main(string[] args)
         {
@@ -66,42 +70,24 @@ namespace SelaShapesAssignment
 
             while (shape == null)
             {
-                
-                pressedKey = Console.ReadKey().Key;
+                string shapeNameEntered = Console.ReadLine();
                 Console.Write(Environment.NewLine);
 
                 try
                 {
-
-                    switch (pressedKey)
+                    // Use reflection to get the type and it's required params:
+                    Type shapeType = shapeTypes.Where(t => t.FullName.ToLower().Contains(shapeNameEntered.ToLower())).First();
+                    var ctors = shapeType.GetConstructors();
+                    var ctor = ctors[0];
+                    
+                    List<object> sides = new List<object>();
+                    foreach (ParameterInfo pi in ctor.GetParameters())
                     {
-                        case ConsoleKey.D1:
-                            Console.WriteLine("Enter a side length:");
-                            shape = new Square(GetNumFromConsoleAndVerifyIt());
-                            break;
-                        case ConsoleKey.D2:
-                            Console.WriteLine("Enter a height length:");
-                            double height = GetNumFromConsoleAndVerifyIt();
-                            Console.WriteLine("Enter a width length:");
-                            double width = GetNumFromConsoleAndVerifyIt();
-                            shape = new Rectangle(height, width);
-                            break;
-                        case ConsoleKey.D3:
-                            Console.WriteLine("Enter a radius length:");
-                            shape = new Circle(GetNumFromConsoleAndVerifyIt());
-                            break;
-                        case ConsoleKey.D4:
-                            Console.WriteLine("Enter a triangle height length:");
-                            double triangleHeight = GetNumFromConsoleAndVerifyIt();
-                            Console.WriteLine("Enter a triangle width length:");
-                            double triangleWidth = GetNumFromConsoleAndVerifyIt();
-                            shape = new RightTriangle(triangleHeight, triangleWidth);
-                            break;
-                        default:
-                            throw new ArgumentException();
+                        sides.Add(GetNumFromConsole(pi.Name));
                     }
+                    shape = (I2DShape)ctor.Invoke(sides.ToArray());
                 }
-                catch (ArgumentException)
+                catch (FormatException)
                 {
                     PrintAddNewShapeWarning();
                     PrintAddNewShapeHelp();
@@ -113,29 +99,27 @@ namespace SelaShapesAssignment
             return shape;
         }
 
-        private static double GetNumFromConsoleAndVerifyIt()
+        private static IEnumerable<Type> GetI2DShapeImplementationsWithoutAbstract()
         {
-            string enteredKeys = Console.ReadLine();
-            double num;
-            if (Double.TryParse(enteredKeys, out num))
-            {
-                return num;
-            }
-            else
-            {
-                throw new ArgumentException();
-            }
+            Type type = typeof(I2DShape);
+            return AppDomain.CurrentDomain.GetAssemblies()
+                .SelectMany(s => s.GetTypes())
+                .Where(p => type.IsAssignableFrom(p) && !p.IsAbstract && p.IsClass);
+        }
+
+        private static double GetNumFromConsole(string nameOfParam)
+        {
+            Console.WriteLine("Please enter a length parameter for " + nameOfParam);
+            return Double.Parse(Console.ReadLine());
         }
 
         #region consolePrints
 
         private static void PrintAddNewShapeHelp()
         {
-            Console.Write(@"Please enter a number for the required shape:
-1.	Square
-2.	Rectangle
-3.	Circle 
-4.	Right triangle" + Environment.NewLine);
+            Console.WriteLine(@"Please enter the name of the required shape:");
+            Console.Write(String.Join(Environment.NewLine, shapeTypes.Select(s => s.Name)));
+            Console.WriteLine();
         }
 
         private static void PrintHelp()

@@ -7,7 +7,7 @@
 
         public abstract double Circumference { get; }
 
-        internal PolarCoordinatesShape(double r1, double r2)
+        public PolarCoordinatesShape(double r1, double r2)
         {
             area = CalculateArea(r1, r2); 
         }

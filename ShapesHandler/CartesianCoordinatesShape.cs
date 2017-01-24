@@ -8,7 +8,7 @@ namespace ShapesHandler
 
         public abstract double Area { get; }
 
-        internal CartesianCoordinatesShape(double[] sides)
+        public CartesianCoordinatesShape(double[] sides)
         {
             circumference = CalculateCircumference(sides);
         }
